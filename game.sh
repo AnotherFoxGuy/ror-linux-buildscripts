@@ -19,12 +19,8 @@ if [ ! -e "0_build/$CMAKEBUILDTYPE" ]; then
 fi
 cd 0_build/$CMAKEBUILDTYPE
 
-conan install --build=missing -u ../../
-
 cmake ../../ -GNinja \
 -DCMAKE_BUILD_TYPE=$CMAKEBUILDTYPE \
--DBUILD_CUSTOM_VERSION=ON \
--DCUSTOM_VERSION="0.4.8.0-shscript" \
 -DCMAKE_CXX_FLAGS="-pipe -march=native"
 
 # CMAKE_CXX_FLAGS (flags for compiler) - Default are:
@@ -33,7 +29,6 @@ cmake ../../ -GNinja \
 
 # Optimization flags. Pick some if you want to play around with optimization
 # -DCMAKE_CXX_FLAGS="-Ofast -march=native -pipe -flto -mfpmath=both -funroll-loops -floop-parallelize-all -ftree-parallelize-loops=4" \
-
 
 ninja
 ninja zip_and_copy_resources
